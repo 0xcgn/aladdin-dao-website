@@ -15,16 +15,11 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div className={cn("flex flex-col w-full text-center pb-12", className)}>
-      {preHeader && (
-        <Balance className="text-muted-foreground">{preHeader}</Balance>
-      )}
-      <Balance
-        as="h2"
-        className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]"
-      >
+      {preHeader && <span className="text-muted-foreground">{preHeader}</span>}
+      <h2 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]">
         {header}
-      </Balance>
-      <Balance className="text-muted-foreground">{subheader}</Balance>
+      </h2>
+      <span className="text-muted-foreground">{subheader}</span>
     </div>
   );
 }

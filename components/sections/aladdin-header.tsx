@@ -10,7 +10,6 @@ import { siteConfig } from "@/config/site";
 import { YoutubeModal } from "../youtube-modal";
 import { EcosystemTvl } from "../ecosystem-tvl";
 import { Section } from "../section";
-import { SectionHeader } from "../section-header";
 import Image from "next/image";
 
 const partnerLogos = [
@@ -47,7 +46,7 @@ export const AladdinHeaderSection = () => {
         <span className="w-full" style={{ color: "#ea8d27" }}>
           Aladdin DAO
         </span>
-        <PageHeaderHeading className="text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl">
+        <PageHeaderHeading className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl">
           Building the future of decentralized finance
         </PageHeaderHeading>
         <PageHeaderDescription className="mx-auto">

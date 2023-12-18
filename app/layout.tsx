@@ -9,6 +9,7 @@ import "./globals.css";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { SiteFooter } from "@/components/site-footer";
 import { Analytics } from "@/components/analytics";
+import { Provider as BalancerProvider } from "react-wrap-balancer";
 
 export const metadata: Metadata = {
   title: {
@@ -76,12 +77,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
-            <SiteHeader />
-            <div className="flex-1">{children}</div>
-            <SiteFooter />
-          </div>
-          <TailwindIndicator />
+          <BalancerProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <SiteHeader />
+              <div className="flex-1">{children}</div>
+              <SiteFooter />
+            </div>
+            <TailwindIndicator />
+          </BalancerProvider>
         </ThemeProvider>
         <Analytics />
       </body>

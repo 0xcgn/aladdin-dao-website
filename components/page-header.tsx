@@ -25,8 +25,7 @@ function PageHeaderHeading({
   ...props
 }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <Balance
-      as={"h1"}
+    <h1
       className={cn(
         "text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]",
         className
