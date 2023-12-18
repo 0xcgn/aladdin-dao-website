@@ -1,17 +1,12 @@
 import Link from "next/link";
 
 import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-// import { CommandMenu } from "@/components/command-menu"
-import { IconProps, Icons } from "@/components/icons";
+import { Icons } from "@/components/icons";
 import { MainNav } from "@/components/main-nav";
-// import { MobileNav } from "@/components/mobile-nav"
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { ProductMenu } from "./product-menu-item";
 import { SocialButton } from "./social-button";
 import { MobileNav } from "./mobile-nav";
-import Image from "next/image";
 import { Logo } from "./Logo";
 
 const socials = [

@@ -21,18 +21,21 @@ export const EcosystemTvl = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all([
-      fetch("https://api.llama.fi/tvl/clever").then((res) => res.json()),
-      fetch("https://api.llama.fi/tvl/concentrator").then((res) => res.json()),
-      fetch("https://api.llama.fi/tvl/fx-protocol").then((res) => res.json()),
-      fetch("https://api.llama.fi/tvl/aladdin-dao").then((res) => res.json()),
-    ]).then((data) => {
-      setCleverTVL(data[0]);
-      setConcentratorTVL(data[1]);
-      setFxProtocolTVL(data[2]);
-      setAladdinDaoTVL(data[3]);
-      setLoading(false);
-    });
+    fetch("https://api.llama.fi/tvl/clever")
+      .then((res) => res.json())
+      .then((data) => setCleverTVL(data));
+    fetch("https://api.llama.fi/tvl/concentrator")
+      .then((res) => res.json())
+      .then((data) => setConcentratorTVL(data));
+    fetch("https://api.llama.fi/tvl/fx-protocol")
+      .then((res) => res.json())
+      .then((data) => setFxProtocolTVL(data));
+
+    fetch("https://api.llama.fi/tvl/aladdin-dao")
+      .then((res) => res.json())
+      .then((data) => setAladdinDaoTVL(data));
+
+    setLoading(false);
   }, []);
 
   const totalTVL = cleverTVL + concentratorTVL + fxProtocolTVL + aladdinDaoTVL;

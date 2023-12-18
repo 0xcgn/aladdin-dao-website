@@ -32,7 +32,7 @@ export function MobileNav() {
   return (
     <div className="mr-4 md:hidden inline">
       <Sheet>
-        <SheetTrigger>
+        <SheetTrigger asChild>
           <Button size="icon" variant="ghost">
             <AlignLeft className="w-4 h-4" />
           </Button>

@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Aladdin DAO",
-  url: "https://aladdin.club/",
+  url: "https://aladdin.club",
   description: "Building The Future Of Decentralized Finance.",
   ogImage:
     "https://pbs.twimg.com/media/FGpFqJ-VEAQShSW?format=jpg&name=900x900",
