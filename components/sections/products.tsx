@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { ExternalLink } from "lucide-react";
 import { SectionHeader } from "../section-header";
 import Link from "next/link";
+import { Section } from "../section";
 
 interface ProductCardProps {
   title: string;
@@ -48,7 +49,7 @@ const ProductCard = ({
 
 export const ProductsSection = () => {
   return (
-    <div className="container flex flex-col py-12 pb-24">
+    <Section className="pb-24">
       <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <SectionHeader
           className="sm:text-left justify-center p-6"
@@ -80,6 +81,6 @@ export const ProductsSection = () => {
           image="/images/fx-protocol-logo.webp"
         />
       </div>
-    </div>
+    </Section>
   );
 };
