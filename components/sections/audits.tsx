@@ -25,7 +25,6 @@ export const AuditsSection = () => {
         <div className="w-full md:w-2/4 lg:3/12 xl:w-4/12 flex flex-col items-center md:items-end pb-6 md:pb-0">
           <SectionHeader
             className="w-full text-secondary dark:text-primary md:text-right max-w-sm pb-8"
-            preHeader="Designed from the ground up with security in mind"
             header="Audited and Verified"
             subheader="by the leading 3rd party security firms."
           />

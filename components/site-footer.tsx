@@ -100,8 +100,15 @@ const SecurityAndLegal = () => (
 
 const Copyright = () => (
   <div className="container flex flex-col items-center justify-between py-2 md:h-20 md:flex-row">
-    <p className="leading-loose text-muted-foreground">
-      © {new Date().getFullYear()} Aladdin DAO
+    <p className="leading-md text-muted-foreground">
+      © {new Date().getFullYear()} Aladdin DAO <br />
+      <small>
+        ENS: &nbsp;
+        <Link href={"https://aladdindao.eth.limo/"} target="_blank">
+          AladdinDao.eth
+        </Link>
+      </small>
+      <br />
     </p>
     <p className="text-center text-xs leading-loose text-muted-foreground md:text-left">
       Built by{" "}
@@ -115,7 +122,7 @@ const Copyright = () => (
       </a>
       . The source code is available on{" "}
       <a
-        href={siteConfig.socials.github}
+        href={"https://dub.sh/aladdin-ws-gh"}
         target="_blank"
         rel="noreferrer"
         className="font-medium underline underline-offset-4"
@@ -123,6 +130,8 @@ const Copyright = () => (
         GitHub
       </a>
       .
+      <br />
+      This project is in beta. Use at your own risk.
     </p>
   </div>
 );

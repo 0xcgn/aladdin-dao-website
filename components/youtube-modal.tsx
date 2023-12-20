@@ -12,7 +12,7 @@ export const YoutubeModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost">
+        <Button size="sm" variant="ghost">
           <Play className="w-4 h-4 mr-2" /> Play Video
         </Button>
       </DialogTrigger>
