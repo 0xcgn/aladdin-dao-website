@@ -1,6 +1,7 @@
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
-import { siteConfig } from "@/config/site";
 import { AlignLeft } from "lucide-react";
 import { Button } from "./ui/button";
 import {
@@ -17,6 +18,8 @@ import {
 } from "@/components/ui/collapsible";
 
 import { Logo } from "./Logo";
+import { useProduct } from "@/hooks/useSiteConfig";
+import { siteConfig } from "@/config/site";
 
 const NavItem = ({ href, text }: { href: string; text: string }) => (
   <li>
@@ -29,6 +32,8 @@ const NavItem = ({ href, text }: { href: string; text: string }) => (
 );
 
 export function MobileNav() {
+  const product = useProduct();
+
   return (
     <div className="mr-4 md:hidden inline">
       <Sheet>
@@ -70,12 +75,12 @@ export function MobileNav() {
                 </CollapsibleContent>
               </Collapsible>
             </li>
-            <NavItem href={siteConfig.links.docs} text="Documentation" />
-            <NavItem href={siteConfig.links.forum} text="Forum" />
-            <NavItem href={siteConfig.links.governance} text="Governance" />
+            <NavItem href={product.links.docs} text="Documentation" />
+            <NavItem href={product.links.forum} text="Forum" />
+            <NavItem href={product.links.governance} text="Governance" />
             <li className="mt-auto">
               <Button asChild className="w-full">
-                <Link href={siteConfig.links.app} target="_blank">
+                <Link href={product.links.app} target="_blank">
                   Launch App
                 </Link>
               </Button>

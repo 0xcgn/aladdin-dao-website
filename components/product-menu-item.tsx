@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import { Icons } from "@/components/icons";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,7 +13,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { siteConfig } from "@/config/site";
+import { useProduct } from "@/hooks/useSiteConfig";
 
 const MenuItem = ({ href, text }: { href: string; text: string }) => (
   <NavigationMenuItem>
@@ -38,53 +37,37 @@ const products: {
 }[] = [
   {
     title: "Aladdin DAO V2",
-    href: "https://aladdin.aladdin.club",
+    href: "/",
     description:
       "Join the Community of Builders, Farmers, and Learners. Stake, Earn, Learn and Grow with Aladdin DAO V2.",
     logo: "/images/aladdin-logo.webp",
   },
   {
     title: "Concentrator",
-    href: "https://concentrator.aladdin.club",
+    href: "/concentrator",
     description:
       "Enhance and Automate your yields on Convex vaults by concentrating all rewards into auto-compounding top-tier tokens.",
     logo: "/images/concentrator-logo.webp",
   },
   {
     title: "Clever",
-    href: "https://clever.aladdin.club",
+    href: "/clever",
     description:
       "Deposit tokens in high-yielding collateral strategies, and claim your future yields today. They can be farmed, re-deposited, or used wherever you need them.",
     logo: "/images/clever-logo.webp",
   },
   {
     title: "f(x) Protocol",
-    href: "https://fx.aladdin.club",
+    href: "/fx-protocol",
     description:
       "Split the volatility from your token by minting a stable token (fToken) or a volatile token (xToken). Lend, borrow, farm and trade your fToken or speculate on the future with your xToken.",
     logo: "/images/fx-logo.webp",
   },
 ];
 
-const AladdinDAOBig = () => (
-  <li className="row-span-3">
-    <NavigationMenuLink asChild>
-      <a
-        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-        href={siteConfig.links.app}
-      >
-        <Icons.logo className="h-6 w-6" />
-        <div className="mb-2 mt-4 text-lg font-medium">Aladdin DAO V2</div>
-        <p className="text-sm leading-tight text-muted-foreground">
-          Follow the light to stake, earn, learn and grow
-        </p>
-      </a>
-    </NavigationMenuLink>
-  </li>
-);
-
 export function ProductMenu() {
-  console.log("hihi");
+  const product = useProduct();
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -96,7 +79,6 @@ export function ProductMenu() {
                 <ListItem
                   key={`product-${i}`}
                   href={product.href}
-                  target="_blank"
                   title={product.title}
                 >
                   {product.description}
@@ -105,9 +87,9 @@ export function ProductMenu() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <MenuItem href={siteConfig.links.docs} text="Docs" />
-        <MenuItem href={siteConfig.links.forum} text="Forum" />
-        <MenuItem href={siteConfig.links.governance} text="Governance" />
+        <MenuItem href={product.links.docs} text="Docs" />
+        <MenuItem href={product.links.forum} text="Forum" />
+        <MenuItem href={product.links.governance} text="Governance" />
       </NavigationMenuList>
     </NavigationMenu>
   );

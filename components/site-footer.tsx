@@ -1,11 +1,18 @@
-import { siteConfig } from "@/config/site";
+"use client";
+
 import Link from "next/link";
 import { Icons } from "./icons";
 import { SocialButton } from "./social-button";
 import Image from "next/image";
 import { Separator } from "./ui/separator";
+import { SiteConfig } from "@/config/site";
+import { useProduct } from "@/hooks/useSiteConfig";
 
-const Resources = () => (
+interface FooterSectionProps {
+  siteConfig: SiteConfig;
+}
+
+const Resources = ({ siteConfig }: FooterSectionProps) => (
   <div className="w-1/3 md:w-2/5 lg:w-1/5">
     <h4 className="font-bold mb-2">Resources</h4>
     <ul>
@@ -30,15 +37,15 @@ const Resources = () => (
         </Link>
       </li>
       <li>
-        <Link href={siteConfig.socials.discord} target="_blank">
-          Discord
+        <Link href={siteConfig.links.branding} target="_blank">
+          Branding
         </Link>
       </li>
     </ul>
   </div>
 );
 
-const Products = () => (
+const Products = ({ siteConfig }: FooterSectionProps) => (
   <div className="w-1/3 md:w-2/5 lg:w-1/5">
     <h4 className="font-bold mb-2">Products</h4>
     <ul>
@@ -71,7 +78,7 @@ const Products = () => (
   </div>
 );
 
-const SecurityAndLegal = () => (
+const SecurityAndLegal = ({ siteConfig }: FooterSectionProps) => (
   <div className="w-1/3 md:w-2/5 lg:w-1/5 ">
     <h4 className="font-bold mb-2">Security</h4>
     <ul>
@@ -98,7 +105,7 @@ const SecurityAndLegal = () => (
   </div>
 );
 
-const Copyright = () => (
+const Copyright = ({ siteConfig }: FooterSectionProps) => (
   <div className="container flex flex-col items-center justify-between py-2 md:h-20 md:flex-row">
     <p className="leading-md text-muted-foreground">
       © {new Date().getFullYear()} Aladdin DAO <br />
@@ -136,13 +143,17 @@ const Copyright = () => (
   </div>
 );
 
-const socials = [
+const buildSocials = (siteConfig: SiteConfig) => [
   // {
   //   href: siteConfig.socials.medium,
   //   Icon: Icons.medium,
   //   label: "Medium",
   // },
-
+  // {
+  //   href: siteConfig.socials.telegram,
+  //   Icon: Icons.telegram,
+  //   label: "Telegram",
+  // },
   {
     href: siteConfig.socials.twitter,
     Icon: Icons.twitter,
@@ -164,33 +175,30 @@ const socials = [
     Icon: Icons.gitHub,
     label: "Github",
   },
-  // {
-  //   href: siteConfig.socials.telegram,
-  //   Icon: Icons.telegram,
-  //   label: "Telegram",
-  // },
 ];
 
 export function SiteFooter() {
+  const product = useProduct();
+  const socials = buildSocials(product);
+
   return (
     <footer className="text-sm md:px-8 border-t-1 border-t pt-8 md:pt-24">
       <div className="container flex flex-col md:flex-row mb-8 gap-4">
         <div className="w-full items-center md:items-start md:w-2/5 lg:w-1/5 flex flex-col gap-4 pr-4">
           <Image
             className="h-16 w-16 md:h-12 md:w-12"
-            src={"/images/aladdin-dao-logo.webp"}
+            src={product.logo}
             width={60}
             height={60}
-            alt="Aladdin DAO Logo"
+            alt={`${product.name} Logo`}
           />
           <span className="text-muted-foreground">
             Building the future of Decentralized Finance
           </span>
           <div className="flex items-center">
             {socials.map((social, i) => (
-              <>
+              <div key={`footer-social-item-${i}`} className=" flex h-full">
                 <SocialButton
-                  key={`footer-social-${social.label}`}
                   href={social.href}
                   Icon={social.Icon}
                   label={social.label}
@@ -199,7 +207,7 @@ export function SiteFooter() {
                 {i < socials.length - 1 && (
                   <Separator className="mx-1" orientation="vertical" />
                 )}
-              </>
+              </div>
             ))}
           </div>
         </div>
@@ -209,14 +217,14 @@ export function SiteFooter() {
         </div>
 
         <div className="w-full md:w-3/5 lg:w-4/5 flex flex-row sm:flex-row justify-center md:justify-end text-center md:text-left">
-          <Products />
-          <Resources />
-          <SecurityAndLegal />
+          <Products siteConfig={product} />
+          <Resources siteConfig={product} />
+          <SecurityAndLegal siteConfig={product} />
         </div>
       </div>
 
       <Separator />
-      <Copyright />
+      <Copyright siteConfig={product} />
     </footer>
   );
 }

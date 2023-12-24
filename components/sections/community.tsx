@@ -1,10 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { SectionHeader } from "../section-header";
-import { siteConfig } from "@/config/site";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { Icons } from "../icons";
 import { ExternalLink, MessagesSquare } from "lucide-react";
 import { Section } from "../section";
+import { useProduct } from "@/hooks/useSiteConfig";
 
 interface CommunityCardProps {
   title: string;
@@ -40,6 +42,8 @@ const CommunityCard = ({
 );
 
 export const CommunitySection = () => {
+  const product = useProduct();
+
   return (
     <Section>
       <SectionHeader
@@ -55,21 +59,21 @@ export const CommunitySection = () => {
           title="(formerly Twitter)"
           description="Get the latest announcements, information and memes"
           icon={<Icons.twitter className="w-4 h-4 mr-3" />}
-          href={siteConfig.socials.twitter}
+          href={product.socials.twitter}
         />
 
         <CommunityCard
           title="Forum"
           description="Discuss the future of DAO with community members"
           icon={<MessagesSquare className="w-6 h-6 mr-3" />}
-          href={siteConfig.links.forum}
+          href={product.links.forum}
         />
 
         <CommunityCard
           title="Discord"
           description="Get involved in the community by asking questions"
           icon={<Icons.discord className="w-6 h-6 mr-3" />}
-          href={siteConfig.socials.discord}
+          href={product.socials.discord}
         />
       </div>
     </Section>

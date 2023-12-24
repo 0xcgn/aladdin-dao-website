@@ -1,9 +1,13 @@
-import { siteConfig } from "@/config/site";
+"use client";
+
+import { useProduct } from "@/hooks/useSiteConfig";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
 export const Logo = ({ className }: React.HTMLAttributes<HTMLLinkElement>) => {
+  const product = useProduct();
+
   return (
     <Link
       href="/"
@@ -14,12 +18,12 @@ export const Logo = ({ className }: React.HTMLAttributes<HTMLLinkElement>) => {
     >
       <Image
         className="h-6 w-6"
-        src={"/images/aladdin-dao-logo.webp"}
+        src={product.logo}
         width={60}
         height={60}
-        alt="Aladdin DAO Logo"
+        alt={`${product.name} Logo`}
       />
-      <span className="font-semibold">{siteConfig.name}</span>
+      <span className="font-semibold">{product.name}</span>
     </Link>
   );
 };

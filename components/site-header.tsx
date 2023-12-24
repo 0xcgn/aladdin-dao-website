@@ -1,15 +1,18 @@
+"use client";
+
 import Link from "next/link";
 
-import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/icons";
 import { MainNav } from "@/components/main-nav";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { SocialButton } from "./social-button";
 import { MobileNav } from "./mobile-nav";
 import { Logo } from "./Logo";
+import { SiteConfig } from "@/config/site";
+import { useProduct } from "@/hooks/useSiteConfig";
 
-const socials = [
+const buildSocials = (siteConfig: SiteConfig) => [
   {
     href: siteConfig.socials.twitter,
     Icon: Icons.twitter,
@@ -30,6 +33,9 @@ const socials = [
 ];
 
 export function SiteHeader() {
+  const product = useProduct();
+  const socials = buildSocials(product);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
@@ -52,7 +58,7 @@ export function SiteHeader() {
 
             <ModeToggle />
             <Button asChild className="mx-2 hidden md:flex">
-              <Link href={siteConfig.links.app}>Launch App</Link>
+              <Link href={product.links.app}>Launch App</Link>
             </Button>
           </nav>
         </div>
